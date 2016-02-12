@@ -1,0 +1,26 @@
+<h1>Take that Tom Skilling</h1>
+<%= form_tag "/", method: :get do%>
+    <%= label_tag :city %>
+    <%= text_field_tag :city %>
+  
+    <%= label_tag :state %>
+    <%= text_field_tag :state %>
+  
+
+  <%= submit_tag "Get my forecast" %>
+
+<% end %>
+
+<hr>
+<h2>The current temperature is: <%= @forecasts["query"]["results"]["channel"]["item"]["condition"]["temp"] %> ˚F</h2>
+<hr>
+<h2>The Five Day Forecast:</h2>
+<% @forecasts["query"]["results"]["channel"]["item"]["forecast"].each do |forecast| %>
+<h3><%= forecast["date"] %></h3>
+<h3><%= forecast["day"] %></h3>
+<h3><%= forecast["high"] %>˚F</h3>
+<h3><%= forecast["low"] %>˚F</h3>
+<h3><%= forecast["text"] %></h3>
+<hr>
+<% end %>
+
